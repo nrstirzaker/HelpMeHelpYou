@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-lg">
-    <div class="q-gutter-y-lg" style="max-width: 750px" height="5000">
+    <div class="q-gutter-y-lg" style="max-width: 750px" >
       <q-card>
         <q-tabs
           v-model="tab"
