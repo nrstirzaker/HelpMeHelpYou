@@ -85,15 +85,16 @@
 
                 />
               </div>
+
               <div class="q-pa-lg" style="max-width: 750px">
                 <div class="row q-col-gutter-lg">
                   <div class="col" >
-                    <q-select outlined v-model="symptomInstances" :options=getSymptoms()></q-select>
+                    <q-select outlined v-model="symptomInstances1" :options=getSymptoms()></q-select>
                   </div>
 
                   <div class="col-5">
                     <q-slider
-                      v-model="howBadIsIt"
+                      v-model="howBadIsIt1"
                       :min="0"
                       :max="10"
                       :step="1"
@@ -104,11 +105,52 @@
                     />
                   </div>
                   <div class="col">
-                    <q-btn push color="primary" size="sm" round icon="eva-plus-circle" />
+                    <q-btn  @click="rowVisible = true" color="primary" size="sm" round icon="eva-plus-circle" />
+
+
+
                   </div>
+
+
+
+
                 </div>
+
               </div>
 
+              <div v-if="rowVisible" class="q-pa-lg" style="max-width: 750px">
+                <div class="row q-col-gutter-lg">
+                  <div class="col" >
+                    <q-select outlined v-model="symptomInstances2" :options=getSymptoms()></q-select>
+                  </div>
+
+                  <div class="col-5">
+                    <q-slider
+                      v-model="howBadIsIt2"
+                      :min="0"
+                      :max="10"
+                      :step="1"
+                      label
+                      label-always
+                      color="light-green"
+                      marker-labels
+                    />
+                  </div>
+                  <div class="col">
+                    <q-btn  @click="rowVisible = true" color="primary" size="sm" round icon="eva-plus-circle" />
+
+
+
+                  </div>
+
+
+
+
+                </div>
+
+              </div>
+              <q-separator/>
+              <q-btn @click="submit()" color="primary" label="Submit" />
 
             </q-form>
           </q-tab-panel>
@@ -130,14 +172,25 @@ export default {
 
     return {
 
-      tab: ref('record'),
+      tab: ref('symptoms'),
       symptom: "",
-      symptomList: [],
+
       selectedCategory: null,
+
+
+
+    }
+  },
+  data(){
+    return {
+      symptomInstances1: [],
+      symptomInstances2: [],
+      howBadIsIt1: [],
+      howBadIsIt2: [],
       location: "",
       activity: "",
-      symptomInstances: [],
-      howBadIsIt: []
+      symptomList: [],
+      rowVisible:false
     }
   },
   methods: {
@@ -150,6 +203,12 @@ export default {
     getSymptoms() {
       console.log(this.symptomList.length)
       return this.symptomList;
+    },
+    addInstanceRow(){
+      console.log("add instance row")
+    },
+    submit(){
+      console.log("submit")
     }
   }
 }
